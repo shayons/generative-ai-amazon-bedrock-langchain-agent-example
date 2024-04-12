@@ -1,3 +1,4 @@
-boto3==1.28.64
-langchain==0.0.329
+boto3
+langchain
 pdfrw
+langchain_community
