@@ -4,6 +4,7 @@ from langchain.retrievers import AmazonKendraRetriever
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain.llms.bedrock import Bedrock
+from langchain_community.chat_models import BedrockChat
 import boto3
 import requests
 import os
@@ -29,7 +30,7 @@ class Tools():
         region = os.environ['AWS_REGION']
         kendra_index_id = os.environ['KENDRA_INDEX_ID']
 
-        llm = Bedrock(client=bedrock_client, model_id="anthropic.claude-v2", region_name=os.environ['AWS_REGION']) # "anthropic.claude-instant-v1"
+        llm = BedrockChat(client=bedrock_client, model_id="anthropic.claude-3-sonnet-20240229-v1:0", region_name=os.environ['AWS_REGION']) # "anthropic.claude-instant-v1"
         llm.model_kwargs = {'max_tokens_to_sample': 350} 
 
         retriever = AmazonKendraRetriever(index_id=kendra_index_id)
